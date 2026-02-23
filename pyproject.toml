@@ -1,0 +1,18 @@
+[project]
+name = "civilwarmap-data"
+version = "0.1.0"
+description = "Data and scripts for Civil War cartogram generation"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "shapely>=2.0,<3",
+]
+
+[build-system]
+requires = ["hatchling>=1.24.0"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+package = false
+python-preference = "only-managed"
+python = "3.12"

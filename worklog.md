@@ -6,8 +6,8 @@ Track cartogram generation runs, exact inputs/flags, outputs, and quality observ
 ## Core Inputs
 - Geometry source: `data/us_state_1860_nspop_proj.geojson`
 - Geometry (validated): `data/us_state_1860_nspop_proj_valid.geojson`
-- Base data CSV: `output/us_state_1860_modern_data.csv`
-- Flipped data CSV (LA/TN/AR toggled): `output/us_state_1860_modern_data_flipped.csv`
+- 1861 data CSV (darker; LA/TN/AR dark): `output/us_state_1861_modern_data.csv`
+- 1863 data CSV (whiter; LA/TN/AR white): `output/us_state_1863_modern_data.csv`
 - Tool binary: `cartogram-cpp/build/Release/cartogram`
 
 ## Run History (2026-02-23)
