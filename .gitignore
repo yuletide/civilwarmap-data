@@ -1,0 +1,19 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# OS/editor
+.DS_Store
+.vscode/
+
+# Large/generated outputs
+output/*.geojson
+output/*.json
+output/*.csv
+output/*.svg
+output/*.pdf
+output/*.log
+
+# Keep source-of-truth docs/scripts tracked
+!output/.gitkeep
