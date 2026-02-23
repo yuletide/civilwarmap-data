@@ -36,7 +36,7 @@ REPO_ROOT="$(pwd)"
 REPO_ROOT="$(pwd)"
 cd output
 "$REPO_ROOT/cartogram-cpp/build/Release/cartogram" \
-  "$REPO_ROOT/us_state_1860_nspop_proj_valid.geojson" \
+  "$REPO_ROOT/data/us_state_1860_nspop_proj_valid.geojson" \
   "$REPO_ROOT/output/us_state_1860_modern_data.csv" \
   --skip_projection --plot_polygons --remove_tiny_polygons --minimum_polygon_area 0.0005 --verbose
 ```
@@ -46,7 +46,7 @@ cd output
 REPO_ROOT="$(pwd)"
 cd output
 "$REPO_ROOT/cartogram-cpp/build/Release/cartogram" \
-  "$REPO_ROOT/us_state_1860_nspop_proj_valid.geojson" \
+  "$REPO_ROOT/data/us_state_1860_nspop_proj_valid.geojson" \
   "$REPO_ROOT/output/us_state_1860_modern_data_flipped.csv" \
   --skip_projection --plot_polygons --remove_tiny_polygons --minimum_polygon_area 0.0005 --verbose
 ```
@@ -57,7 +57,7 @@ REPO_ROOT="$(pwd)"
 cd output
 cp us_state_1860_modern_data.csv us_state_1860_modern_data_1861_iter40.csv
 "$REPO_ROOT/cartogram-cpp/build/Release/cartogram" \
-  "$REPO_ROOT/us_state_1860_nspop_proj_valid.geojson" \
+  "$REPO_ROOT/data/us_state_1860_nspop_proj_valid.geojson" \
   "$REPO_ROOT/output/us_state_1860_modern_data_1861_iter40.csv" \
   --skip_projection --plot_polygons --remove_tiny_polygons --minimum_polygon_area 0.0015 \
   --n_points 50000 --min_integrations 40 --max_permitted_area_error 0.002 --quadtree_leaf_count_factor 512 --verbose

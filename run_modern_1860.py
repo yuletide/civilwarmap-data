@@ -10,9 +10,10 @@ from shapely.validation import make_valid
 BASE = Path(__file__).resolve().parent
 OUTPUT_DIR = BASE / "output"
 OUTPUT_DIR.mkdir(exist_ok=True)
+DATA_DIR = BASE / "data"
 
-SOURCE_GEOJSON = BASE / "us_state_1860_nspop_proj.geojson"
-VALID_INPUT_GEOJSON = BASE / "us_state_1860_nspop_proj_valid.geojson"
+SOURCE_GEOJSON = DATA_DIR / "us_state_1860_nspop_proj.geojson"
+VALID_INPUT_GEOJSON = DATA_DIR / "us_state_1860_nspop_proj_valid.geojson"
 MODERN_CSV = OUTPUT_DIR / "us_state_1860_modern_data.csv"
 CARTOGRAM_BIN = BASE / "cartogram-cpp" / "build" / "Release" / "cartogram"
 
@@ -72,9 +73,7 @@ def run_modern_cartogram(input_geojson: Path, input_csv: Path) -> subprocess.Com
         str(input_geojson),
         str(input_csv),
         "--skip_projection",
-        "--disable_simplify_and_densify",
         "--plot_polygons",
-        "--export_preprocessed",
         "--verbose",
     ]
     return subprocess.run(cmd, capture_output=True, text=True)
@@ -89,32 +88,6 @@ def fix_output_geometry(output_geojson: Path) -> Path:
     fixed_output = output_geojson.with_name(output_geojson.stem + "_valid.geojson")
     make_valid_geojson(output_geojson, fixed_output)
     return fixed_output
-
-
-def maine_summary(path: Path) -> tuple | None:
-    with path.open() as f:
-        geojson = json.load(f)
-
-    for feature in geojson["features"]:
-        if feature.get("properties", {}).get("statenam") != "Maine":
-            continue
-        geometry = feature.get("geometry", {})
-        geometry_type = geometry.get("type")
-        coordinates = geometry.get("coordinates", [])
-
-        if geometry_type == "MultiPolygon":
-            polygon_count = len(coordinates)
-            exterior_point_count = 0
-            for polygon in coordinates:
-                if polygon:
-                    exterior_point_count += len(polygon[0])
-            return ("MultiPolygon", polygon_count, exterior_point_count)
-
-        if geometry_type == "Polygon":
-            return ("Polygon", 1, len(coordinates[0]) if coordinates else 0)
-
-        return (geometry_type,)
-    return None
 
 
 def main() -> int:
@@ -159,8 +132,6 @@ def main() -> int:
     print(f"Output: {cartogram_output}")
     print(f"Fixed output: {fixed_output}")
     print(f"Invalid geometries before/after: {invalid_before}/{invalid_after}")
-    print(f"Maine summary (input valid): {maine_summary(VALID_INPUT_GEOJSON)}")
-    print(f"Maine summary (output fixed): {maine_summary(fixed_output)}")
     print("Logs: output/modern_run.stderr.log, output/modern_run.stdout.log")
     return 0
 
