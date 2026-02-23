@@ -22,40 +22,43 @@ cmake --build build/Release -j4
 
 Binary used by this project:
 ```bash
-$REPO_ROOT/cartogram-cpp/build/Release/cartogram
+./cartogram-cpp/build/Release/cartogram
 ```
 
 ## Generate validated geometry + base CSV
 ```bash
-cd $REPO_ROOT
-$REPO_ROOT/.venv/bin/python run_modern_1860.py
+REPO_ROOT="$(pwd)"
+"$REPO_ROOT/.venv/bin/python" run_modern_1860.py
 ```
 
 ## Run 1861 base (non-flipped)
 ```bash
-cd $REPO_ROOT/output
-$REPO_ROOT/cartogram-cpp/build/Release/cartogram \
-  $REPO_ROOT/us_state_1860_nspop_proj_valid.geojson \
-  $REPO_ROOT/output/us_state_1860_modern_data.csv \
+REPO_ROOT="$(pwd)"
+cd output
+"$REPO_ROOT/cartogram-cpp/build/Release/cartogram" \
+  "$REPO_ROOT/us_state_1860_nspop_proj_valid.geojson" \
+  "$REPO_ROOT/output/us_state_1860_modern_data.csv" \
   --skip_projection --plot_polygons --remove_tiny_polygons --minimum_polygon_area 0.0005 --verbose
 ```
 
 ## Run 1863-style flipped variant
 ```bash
-cd $REPO_ROOT/output
-$REPO_ROOT/cartogram-cpp/build/Release/cartogram \
-  $REPO_ROOT/us_state_1860_nspop_proj_valid.geojson \
-  $REPO_ROOT/output/us_state_1860_modern_data_flipped.csv \
+REPO_ROOT="$(pwd)"
+cd output
+"$REPO_ROOT/cartogram-cpp/build/Release/cartogram" \
+  "$REPO_ROOT/us_state_1860_nspop_proj_valid.geojson" \
+  "$REPO_ROOT/output/us_state_1860_modern_data_flipped.csv" \
   --skip_projection --plot_polygons --remove_tiny_polygons --minimum_polygon_area 0.0005 --verbose
 ```
 
 ## Run publication-focused iter40 pass
 ```bash
-cd $REPO_ROOT/output
+REPO_ROOT="$(pwd)"
+cd output
 cp us_state_1860_modern_data.csv us_state_1860_modern_data_1861_iter40.csv
-$REPO_ROOT/cartogram-cpp/build/Release/cartogram \
-  $REPO_ROOT/us_state_1860_nspop_proj_valid.geojson \
-  $REPO_ROOT/output/us_state_1860_modern_data_1861_iter40.csv \
+"$REPO_ROOT/cartogram-cpp/build/Release/cartogram" \
+  "$REPO_ROOT/us_state_1860_nspop_proj_valid.geojson" \
+  "$REPO_ROOT/output/us_state_1860_modern_data_1861_iter40.csv" \
   --skip_projection --plot_polygons --remove_tiny_polygons --minimum_polygon_area 0.0015 \
   --n_points 50000 --min_integrations 40 --max_permitted_area_error 0.002 --quadtree_leaf_count_factor 512 --verbose
 ```
