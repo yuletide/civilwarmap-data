@@ -17,3 +17,5 @@ output/*.log
 
 # Keep source-of-truth docs/scripts tracked
 !output/.gitkeep
+!output/us_state_1860_modern_data.csv
+!output/us_state_1860_modern_data_flipped.csv
