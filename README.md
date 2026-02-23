@@ -31,23 +31,23 @@ REPO_ROOT="$(pwd)"
 "$REPO_ROOT/.venv/bin/python" run_modern_1860.py
 ```
 
-## Run 1861 base (non-flipped)
+## Run 1861 map (darker; LA/TN/AR dark)
 ```bash
 REPO_ROOT="$(pwd)"
 cd output
 "$REPO_ROOT/cartogram-cpp/build/Release/cartogram" \
   "$REPO_ROOT/data/us_state_1860_nspop_proj_valid.geojson" \
-  "$REPO_ROOT/output/us_state_1860_modern_data.csv" \
+  "$REPO_ROOT/output/us_state_1861_modern_data.csv" \
   --skip_projection --plot_polygons --remove_tiny_polygons --minimum_polygon_area 0.0005 --verbose
 ```
 
-## Run 1863-style flipped variant
+## Run 1863 map (whiter; LA/TN/AR white)
 ```bash
 REPO_ROOT="$(pwd)"
 cd output
 "$REPO_ROOT/cartogram-cpp/build/Release/cartogram" \
   "$REPO_ROOT/data/us_state_1860_nspop_proj_valid.geojson" \
-  "$REPO_ROOT/output/us_state_1860_modern_data_flipped.csv" \
+  "$REPO_ROOT/output/us_state_1863_modern_data.csv" \
   --skip_projection --plot_polygons --remove_tiny_polygons --minimum_polygon_area 0.0005 --verbose
 ```
 
@@ -55,36 +55,29 @@ cd output
 ```bash
 REPO_ROOT="$(pwd)"
 cd output
-cp us_state_1860_modern_data.csv us_state_1860_modern_data_1861_iter40.csv
+cp us_state_1861_modern_data.csv us_state_1861_modern_data_iter40.csv
 "$REPO_ROOT/cartogram-cpp/build/Release/cartogram" \
   "$REPO_ROOT/data/us_state_1860_nspop_proj_valid.geojson" \
-  "$REPO_ROOT/output/us_state_1860_modern_data_1861_iter40.csv" \
+  "$REPO_ROOT/output/us_state_1861_modern_data_iter40.csv" \
   --skip_projection --plot_polygons --remove_tiny_polygons --minimum_polygon_area 0.0015 \
   --n_points 50000 --min_integrations 40 --max_permitted_area_error 0.002 --quadtree_leaf_count_factor 512 --verbose
 ```
 
 ## Key outputs
-- `output/us_state_1860_modern_data_output.svg`
-- `output/us_state_1860_modern_data_flipped_output.svg`
-- `output/us_state_1860_modern_data_1861_iter40_output.svg`
+- `output/us_state_1861_modern_data_output.svg`
+- `output/us_state_1863_modern_data_output.svg`
 
 For run-by-run notes and observations, see `worklog.md`.
 
 ## Data source citation (NHGIS)
 
-Primary tabular inputs come from IPUMS NHGIS (state-level 1860 extracts in this repo, including `ds13` and `ds14`; see files under `nhgis0001_csv/`).
+Primary tabular inputs come from IPUMS NHGIS (state-level 1860 extracts).
 
-Recommended citation (from NHGIS codebook):
+Recommended citation:
 
 ```text
 IPUMS National Historical Geographic Information System: Version 17.0 [dataset].
 Minneapolis, MN: IPUMS. 2022. https://doi.org/10.18128/D050.V17.0
-```
-
-Short-form acknowledgement recommended by NHGIS:
-
-```text
-IPUMS NHGIS, University of Minnesota, www.nhgis.org.
 ```
 
 ## Cartogram method and software citations
@@ -97,7 +90,7 @@ density-equalizing map projections. Proceedings of the National Academy of Scien
 115(10), E2156-E2164. https://doi.org/10.1073/pnas.1712674115
 ```
 
-Software (2022, Zenodo):
+Software (2022):
 
 ```text
 Gastner, M. T., adisidev, fillingthemoon, Nguyen Phong, L., nihalzp,
