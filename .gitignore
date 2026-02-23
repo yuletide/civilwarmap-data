@@ -7,15 +7,9 @@ __pycache__/
 .DS_Store
 .vscode/
 
-# Large/generated outputs
-output/*.geojson
-output/*.json
-output/*.csv
-output/*.svg
-output/*.pdf
-output/*.log
 
 # Keep source-of-truth docs/scripts tracked
 !output/.gitkeep
 !output/us_state_1860_modern_data.csv
 !output/us_state_1860_modern_data_flipped.csv
+
