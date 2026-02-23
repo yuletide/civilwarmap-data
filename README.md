@@ -69,3 +69,39 @@ cp us_state_1860_modern_data.csv us_state_1860_modern_data_1861_iter40.csv
 - `output/us_state_1860_modern_data_1861_iter40_output.svg`
 
 For run-by-run notes and observations, see `worklog.md`.
+
+## Data source citation (NHGIS)
+
+Primary tabular inputs come from IPUMS NHGIS (state-level 1860 extracts in this repo, including `ds13` and `ds14`; see files under `nhgis0001_csv/`).
+
+Recommended citation (from NHGIS codebook):
+
+```text
+IPUMS National Historical Geographic Information System: Version 17.0 [dataset].
+Minneapolis, MN: IPUMS. 2022. https://doi.org/10.18128/D050.V17.0
+```
+
+Short-form acknowledgement recommended by NHGIS:
+
+```text
+IPUMS NHGIS, University of Minnesota, www.nhgis.org.
+```
+
+## Cartogram method and software citations
+
+Algorithm (2018):
+
+```text
+Gastner, M. T., Seguy, V., & More, P. (2018). Fast flow-based algorithm for creating
+density-equalizing map projections. Proceedings of the National Academy of Sciences,
+115(10), E2156-E2164. https://doi.org/10.1073/pnas.1712674115
+```
+
+Software (2022, Zenodo):
+
+```text
+Gastner, M. T., adisidev, fillingthemoon, Nguyen Phong, L., nihalzp,
+vuminhhieunus2019, sevvalbbayram, & morrcriven. (2022).
+mgastner/cartogram-cpp: C++ Cartogram Generator (alpha v0.0.0) (v0.0.0-alpha).
+Zenodo. https://doi.org/10.5281/zenodo.6346715
+```
